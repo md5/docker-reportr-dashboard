@@ -1,4 +1,5 @@
 FROM node:0.10
+MAINTAINER Mike Dillon <mike@embody.org> (@md5)
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
