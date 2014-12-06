@@ -9,6 +9,7 @@ Run a web container using linked Redis and Mongo containers:
     docker run -d -p 80:5000 \
         --link some-redis:redis \
         --link some-mongo:mongo \
+        --name reportr-web \
         mdillon/reportr-dashboard
 
 Or use [nginx-proxy](https://github.com/jwilder/nginx-proxy) and configure
@@ -18,12 +19,16 @@ possibly external Redis and Mongo servers:
         -e VIRTUAL_HOST=dashboard.example.com \
         -e REDIS_URL=redis://redis.example.com:6379 \
         -e MONGODB_URL=mongodb://mongo.example.com:27017 \
+        --name reportr-web \
         mdillon/reportr-dashboard
 
 Then run a worker container:
 
     docker run -d \
         --link some-redis:redis \
+        # -e REDIS_URL=redis://redis.example.com:6379 \
         --link some-mongo:mongo \
+        # -e MONGODB_URL=mongodb://mongo.example.com:27017 \
+        --name reportr-worker \
         mdillon/reportr-dashboard \
         node bin/worker.js
