@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# If Reportr's expected variables are not provided, try to derive them from
+# Docker links
+: ${MONGODB_URL:=mongodb:${MONGO_PORT#tcp:}}
+: ${REDIS_URL:=redis:${REDIS_PORT#tcp:}}
+
+if [[ -z "$MONGODB_URL" ]]; then
+	echo >2& Missing mongo configuration
+	exit 1
+fi
+
+export MONGODB_URL REDIS_URL
+
+exec "$@"
