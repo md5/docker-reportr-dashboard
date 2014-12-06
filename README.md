@@ -6,11 +6,13 @@ A [Docker](https://docker.com) container running [Reportr](http://www.reportr.io
 
 Run a web container using linked Redis and Mongo containers:
 
-    docker run -d -p 80:5000 \
+    docker run -d -p 5000:5000 \
         --link some-redis:redis \
         --link some-mongo:mongo \
         --name reportr-web \
         mdillon/reportr-dashboard
+
+Your dashboard can be accessed at http://localhost:5000/ (or http://`$DOCKER_HOST`:5000 for [boot2docker](http://boot2docker.io/)).
 
 Or use [nginx-proxy](https://github.com/jwilder/nginx-proxy) and configure
 possibly external Redis and Mongo servers:
@@ -22,7 +24,8 @@ possibly external Redis and Mongo servers:
         --name reportr-web \
         mdillon/reportr-dashboard
 
-Then run a worker container:
+Then run a worker container, using the same links or environment variables to
+configure your Redis and Mongo:
 
     docker run -d \
         --link some-redis:redis \
