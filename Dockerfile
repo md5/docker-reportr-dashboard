@@ -4,9 +4,9 @@ MAINTAINER Mike Dillon <mike@embody.org> (@md5)
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-ENV REPORTR_DASHBOARD_VERSION e5cbb5d97a0a07932ff79b6885f07dc22444383c
+ENV REPORTR_DASHBOARD_VERSION 30eabf2d2f50a680126353560e15dc807768ea11
 
-RUN curl -L https://github.com/Reportr/dashboard/archive/${REPORTR_DASHBOARD_VERSION}.tar.gz | tar --strip-components 1 -xzf -
+RUN curl -L https://github.com/md5/reportr-dashboard/archive/${REPORTR_DASHBOARD_VERSION}.tar.gz | tar --strip-components 1 -xzf -
 RUN npm install
 RUN npm install -g grunt-cli
 RUN grunt
