@@ -2,8 +2,7 @@
 
 # If Reportr's expected variables are not provided, try to derive them from
 # Docker links
-: ${REPORTR_DB_NAME:=reportr}
-: ${MONGODB_URL:=mongodb:${MONGO_PORT#tcp:}/${REPORTR_DB_NAME}}
+: ${MONGODB_URL:=mongodb:${MONGO_PORT#tcp:}/${REPORTR_DB_NAME:reportr}}
 : ${REDIS_URL:=redis:${REDIS_PORT#tcp:}}
 
 if [[ -z "$MONGODB_URL" ]]; then
