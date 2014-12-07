@@ -38,5 +38,5 @@ configure your Redis and Mongo:
 
 The default database name is `reportr`. If Docker links are being used, the
 database name can be changed by specifying the `REPORTR_DB_NAME` environment
-variable. Otherise, the database name should e set directly as part of the
+variable. Otherwise, the database name should e set directly as part of the
 `MONGODB_URL` environment variable.
