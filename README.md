@@ -20,7 +20,7 @@ possibly external Redis and Mongo servers:
     docker run -d \
         -e VIRTUAL_HOST=dashboard.example.com \
         -e REDIS_URL=redis://redis.example.com:6379 \
-        -e MONGODB_URL=mongodb://mongo.example.com:27017 \
+        -e MONGODB_URL=mongodb://mongo.example.com:27017/my-reportr-db \
         --name reportr-web \
         mdillon/reportr-dashboard
 
@@ -31,7 +31,12 @@ configure your Redis and Mongo:
         --link some-redis:redis \
         # -e REDIS_URL=redis://redis.example.com:6379 \
         --link some-mongo:mongo \
-        # -e MONGODB_URL=mongodb://mongo.example.com:27017 \
+        # -e MONGODB_URL=mongodb://mongo.example.com:27017/my-reportr-db \
         --name reportr-worker \
         mdillon/reportr-dashboard \
         node bin/worker.js
+
+The default database name is `reportr`. If Docker links are being used, the
+database name can be changed by specifying the `REPORTR_DB_NAME` environment
+variable. Otherise, the database name should e set directly as part of the
+`MONGODB_URL` environment variable.
